@@ -192,20 +192,15 @@ function handleGenerateSummary() {
       });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const refreshHeatmapBtn = document.getElementById('refreshHeatmapBtn');
-  if (refreshHeatmapBtn) {
-    refreshHeatmapBtn.addEventListener('click', refreshHeatmap);
-  }
-});
+  let isGeneratingSummary = false;
 
 
-// Function to refresh the heatmap
+  // Function to refresh the heatmap
 function refreshHeatmap() {
   const farmPlotImage = document.getElementById('farmPlotImage');
   if (farmPlotImage && farmPlotImage.src) {
     const currentSrc = farmPlotImage.src.split('?')[0]; // Strip existing query parameters
-    const newSrc = `${currentSrc}`; // Add cache-busting timestamp
+    const newSrc = `${currentSrc}?t=${new Date().getTime()}`; // Add cache-busting timestamp
     farmPlotImage.src = newSrc;
     farmPlotImage.style.display = 'block'; // Ensure it is visible
     console.log('Heatmap refreshed:', newSrc);
@@ -213,12 +208,14 @@ function refreshHeatmap() {
     console.warn('No heatmap found to refresh.');
   }
 }
-
-
-  let isGeneratingSummary = false;
+document.addEventListener('DOMContentLoaded', () => {
+  const refreshHeatmapBtn = document.getElementById('refreshHeatmapBtn');
+  if (refreshHeatmapBtn) {
+    refreshHeatmapBtn.addEventListener('click', refreshHeatmap);
+  }
+});
 
   document.addEventListener("DOMContentLoaded", () => {
-    
     // Elements
     const uploadForm = document.getElementById('uploadForm');
     const partitionForm = document.getElementById('partitionForm');
