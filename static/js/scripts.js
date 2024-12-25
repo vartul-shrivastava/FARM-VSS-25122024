@@ -1,3 +1,6 @@
+  
+  
+  
   // Define showLoading and hideLoading in the global scope
   function showLoading() {
     document.getElementById("loadingOverlay").style.display = "flex";
@@ -198,22 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
       modifyPromptModal.style.display = "flex";
   });
 
-  // Function to fetch the current prompt (default or modified)
-  function fetchCurrentPrompt() {
-      fetch('/get_current_prompt')
-          .then(response => response.json())
-          .then(data => {
-              if (data.success && data.prompt) {
-                  promptTextarea.value = data.prompt;
-              } else {
-                  promptTextarea.value = 'No prompt available.';
-              }
-          })
-          .catch(err => {
-              console.error("Error fetching current prompt:", err);
-              promptTextarea.value = 'Error loading prompt.';
-          });
-  }
+
 
   // Function to save the modified prompt
   savePromptBtn.addEventListener('click', () => {
@@ -433,35 +421,6 @@ savePromptBtn.addEventListener('click', () => {
       }
     });
 
-    // AJAX Upload Form Submission
-    uploadForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      showLoading();
-
-      const formData = new FormData(uploadForm);
-      fetch('/ajax_upload', {
-        method: 'POST',
-        body: formData
-      })
-        .then(resp => resp.json())
-        .then(data => {
-          hideLoading();
-          if (data.success) {
-            // File successfully uploaded
-            document.getElementById('hiddenFilepath').value = data.filepath;
-            buildPartitionUI(data.columns, data.auto_ranges, data.chart_paths);
-            // Show the partition form
-            partitionForm.style.display = 'block';
-          } else {
-            alert('Error uploading file: ' + data.error);
-          }
-        })
-        .catch(err => {
-          hideLoading();
-          console.error('Upload Error:', err);
-          alert('An error occurred while uploading. Check console for details.');
-        });
-    });
 
     // AJAX Partition Form Submission
     partitionForm.addEventListener('submit', function(e) {
@@ -800,23 +759,8 @@ savePromptBtn.addEventListener('click', () => {
     });
   }
 
-  // Show Summary Overlay Function
-  window.showSummaryOverlay = function(summaryText) {
-    const overlay = document.getElementById('summaryOverlay');
-    const summaryContent = document.getElementById('summaryContent');
-    
-    // Set the summary text
-    summaryContent.innerHTML = `<p>${summaryText}</p>`;
-    
-    // Show the overlay
-    overlay.style.display = 'flex';
-  };
 
-  // Hide Summary Overlay Function
-  window.hideSummaryOverlay = function() {
-    const overlay = document.getElementById('summaryOverlay');
-    overlay.style.display = 'none';
-  };
+
 
   // Attach event listener to the close button of the summary overlay
   const closeSummaryBtn = document.getElementById('closeSummaryBtn');

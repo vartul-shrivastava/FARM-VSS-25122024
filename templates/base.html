@@ -12,7 +12,17 @@
   <!-- Inline Styles for Overlays and Spinners -->
 
 </head>
+
 <body>
+    <div id="summaryOverlay" class="overlay">
+    <div class="overlay-content">
+      <span class="close-btn" id="closeSummaryBtn">&times;</span>
+      <h4>FARM Rules Summary (Troubleshoot by choosing different AI models and modifying prompt for more personalized results)</h4>
+      <div id="summaryContent">
+        <p>Loading summary...</p>
+      </div>
+    </div>
+  </div>
   <!-- ======================= -->
   <!-- FIXED HEADER            -->
   <!-- ======================= -->
@@ -117,15 +127,7 @@
   <!-- ======================= -->
   <!-- SUMMARY OVERLAY         -->
   <!-- ======================= -->
-  <div id="summaryOverlay" class="overlay">
-    <div class="overlay-content">
-      <span class="close-btn" id="closeSummaryBtn">&times;</span>
-      <h4>FARM Rules Summary (Troubleshoot by choosing different AI models and modifying prompt for more personalized results)</h4>
-      <div id="summaryContent">
-        <p>Loading summary...</p>
-      </div>
-    </div>
-  </div>
+
 
   <!-- ======================= -->
   <!-- FIXED FOOTER            -->

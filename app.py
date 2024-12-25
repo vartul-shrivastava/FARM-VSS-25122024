@@ -20,7 +20,6 @@ from flask import (
 from werkzeug.utils import secure_filename
 from flask_session import Session
 
-
 # ------------------------------------------------------
 # Matplotlib Configuration (headless)
 # ------------------------------------------------------
@@ -30,6 +29,8 @@ plt.switch_backend('Agg')
 # Flask Setup
 # ------------------------------------------------------
 app = Flask(__name__)
+# Ensure necessary directories exist
+
 
 # Load configuration from environment variables or set defaults
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_default_secret_key')  # Replace with a secure key
@@ -43,14 +44,11 @@ app.config['SESSION_FILE_DIR'] = os.path.join(app.root_path, 'flask_session')
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True  # Adds an extra layer of security
 app.config['SESSION_KEY_PREFIX'] = 'farm_vss_session:'
-
-# Initialize Flask-Session
-Session(app)
-
-# Ensure necessary directories exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PLOTS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['SESSION_FILE_DIR'], exist_ok=True)
+# Initialize Flask-Session
+Session(app)
 
 # ------------------------------------------------------
 # Logging Configuration
@@ -93,10 +91,16 @@ def get_columns(filepath):
         return {'numerical': numeric_cols, 'categorical': categorical_cols}
     except Exception as e:
         logger.error(f"Error in get_columns: {e}")
-        
+
+import os
+import re
+import matplotlib.pyplot as plt
+import seaborn as sns
+import logging
+
 def generate_distribution_charts(df, folder='static/plots'):
     """
-    Generate distribution histograms for each numeric column in `df`.
+    Generate visually enhanced frequency distribution charts with KDE for each numeric column in `df`.
     Saves them in `folder` and returns {col: chart_path}.
     """
     try:
@@ -106,25 +110,62 @@ def generate_distribution_charts(df, folder='static/plots'):
 
         for col in numeric_cols:
             safe_col = re.sub(r'[^\w\s]', '_', col).replace(' ', '_')
-            plot_filename = f"{safe_col}_distribution.png"
+            plot_filename = f"{safe_col}_freq_kde.png"
             plot_path = os.path.join(folder, plot_filename)
 
-            plt.figure(figsize=(8, 6))
-            plt.hist(df[col].dropna(), bins=20, color='#6c63ff', edgecolor='black', alpha=0.7)
-            plt.title(f"Distribution of {col}")
-            plt.xlabel(col)
-            plt.ylabel('Frequency')
-            plt.grid(True)
-            plt.savefig(plot_path)
-            plt.close()
+            # Close any previous plots
+            plt.close('all')
 
+            # Set a beautiful seaborn style
+            sns.set_theme(style="whitegrid")
+
+            # Create the figure
+            plt.figure(figsize=(10, 6))
+
+            # Generate the frequency distribution with KDE
+            sns.histplot(
+                data=df,
+                x=col,
+                kde=True,
+                color="#4c72b0",
+                stat="density",
+                alpha=0.7,
+                edgecolor="black"
+            )
+
+            # Add detailed labels and title
+            plt.title(
+                f"Frequency Distribution with KDE of {col}",
+                fontsize=16,
+                fontweight="bold",
+                color="#333333",
+            )
+            plt.xlabel(col, fontsize=14, fontweight="medium")
+            plt.ylabel("Density", fontsize=14, fontweight="medium")
+            plt.grid(
+                which="major",
+                linestyle="--",
+                linewidth=0.6,
+                color="gray",
+                alpha=0.7,
+            )
+
+            # Adjust layout
+            plt.tight_layout()
+
+            # Save the plot
+            plt.savefig(plot_path, dpi=300, bbox_inches="tight")
+            plt.close('all')  # Close the current plot to free resources
+
+            # Store the plot path
             chart_paths[col] = f"plots/{plot_filename}"
-            logger.debug(f"Generated distribution chart for {col}")
+            logger.debug(f"Generated frequency distribution chart with KDE for {col}")
 
         return chart_paths
     except Exception as e:
         logger.error(f"Error in generate_distribution_charts: {e}")
         raise
+
 
 
 def calculate_membership(x, centers, index):
