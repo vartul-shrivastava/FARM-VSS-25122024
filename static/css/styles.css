@@ -77,12 +77,24 @@ main {
 ---------------------------- */
 .container {
   backdrop-filter: blur(10px); /* Adds a blur effect to the container */
-  background: linear-gradient(135deg, #110b6c, #07035361);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #110b6c, rgba(7, 3, 83, 0.6));
+  border-radius: 12px;
   padding: 20px;
   margin-left: 200px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(255, 255, 255, 0.2); /* Enhanced shadows for ambient occlusion */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  overflow: hidden; /* Ensures content stays within rounded corners */
+}
+
+.container:hover {
+  backdrop-filter: blur(15px); /* Increases blur effect for hover state */
+  background: linear-gradient(135deg, #110b6c, rgba(7, 3, 83, 0.6));
+  border-radius: 16px; /* Slightly larger radius for hover */
+  padding: 20px;
+  margin-left: 200px;
+  margin-bottom: 30px;
+  box-shadow: 0 12px 24px rgba(255, 253, 253, 0.2), 0 40px 40px rgba(255, 232, 232, 0.853); /* Deepened shadows for hover */
 }
 
 section h2 {
@@ -130,7 +142,7 @@ table td {
 
 table th {
   backdrop-filter: blur(10px); /* Adds a blur effect to the header */
-  background: linear-gradient(135deg, #110b6c, #07035361);
+  background: #110b6c;
   color: #fff;
 }
 
@@ -432,7 +444,6 @@ input {
   border-color: #ffcccc;
   background-color: #ffe6e6;
 }
-
 /* Loading overlay */
 .loading-overlay {
   position: fixed;
@@ -440,22 +451,22 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  display: flex;
+  background: rgba(9, 4, 75, 0.8);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  display: none; /* Hidden by default */
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth fade-in/out */
 }
 
 /* Spinner */
 .spinner {
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #6c63ff;
+  border-top: 5px solid #9d97ff;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite;
+  animation: spin 0.2s linear infinite;
 }
 
 @keyframes spin {
@@ -538,15 +549,23 @@ input {
   position: fixed;
   top: 0;
   width: 100%;
-  background: linear-gradient(135deg, #110b6c, #07035361);
-  color: #fff;
+  background: linear-gradient(135deg, #110b6c, rgba(7, 3, 83, 0.6));
+  color: #ffffff;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  padding: 15px 25px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(255, 255, 255, 0.1); /* Enhanced shadows for depth */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle bottom border for definition */
 }
+
+.site-header:hover {
+  backdrop-filter: blur(15px); /* Slightly increase blur on hover */
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25), 0 40px 40px rgba(255, 234, 234, 0.2); /* Deepened shadows for hover */
+}
+
 
 .header-left,
 .header-center,
@@ -702,7 +721,7 @@ input {
   background-color: wheat; /* Transparent button */
   border: 1px solid #ffffff; /* Optional: Add a border */
   color: #0f0e5f; /* Text color */
-  font-size: 14px;
+  font-size: 11px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -773,29 +792,6 @@ input {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-/* Loading Overlay */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255,255,255,0.8);
-  z-index: 999;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.spinner {
-  border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid #6c63ff; /* Blue */
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
 }
 
 /* Summary Overlay Styles */

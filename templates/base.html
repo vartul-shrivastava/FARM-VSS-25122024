@@ -66,7 +66,7 @@
   <!-- FIXED LEFT MENU         -->
   <!-- ======================= -->
   <div class="left-menu">
-    <h3>FARM Thresholds</h3>
+    <h3>⚙️FARM Thresholds</h3>
     <p style="font-size: smaller;"><i>Set the minimum value of Significance/Support and Certainty/Confidence for entire session</i></p>
     <form id="thresholdForm">
       <label for="min_support">Minimum Significance/Support:</label>
@@ -96,7 +96,7 @@
       <button class="btn" style="margin-top: 10px;" type="submit">Set Thresholds</button>
     </form>
 
-    <h3 style="margin-top: 10px;">FARM Rule Exploration</h3>
+    <h3 style="margin-top: 10px;">⚙️FARM Rule Exploration</h3>
     <p style="font-size: smaller;"><i>A brute-force explorer of all possible FARM rules based on the combinations of Significance and Certainty</i></p>
     <form id="farmExplorationForm">
       <label for="step_support">Signif/Supp Step:</label>
@@ -146,9 +146,21 @@
   <!-- LOADING OVERLAY         -->
   <!-- ======================= -->
   <div class="loading-overlay" id="loadingOverlay">
+    <img style="margin-right: 50px;" src="{{ url_for('static', filename='logo.svg') }}" alt="FARM-VSS Logo" class="site-logo" />
     <div class="spinner"></div>
   </div>
-
+  <div id="modifyPromptModal" class="overlay">
+    <div class="overlay-content">
+      <span class="close-btn" id="closeModifyPromptBtn">&times;</span>
+      <h2>Modify Summary Prompt</h2>
+      <textarea id="promptTextarea" rows="10" style="width: 100%; padding: 10px; font-size: 16px;"></textarea>
+      <div style="margin-top: 20px; text-align: right;">
+        <button id="savePromptBtn" class="p-btn" style="margin-right: 10px;">Save</button>
+        <button id="resetPromptBtn" class="p-btn" style="margin-right: 10px;">Reset to Default</button>
+        <button id="cancelPromptBtn" class="p-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
   <!-- ======================= -->
   <!-- MAIN CONTENT            -->
   <!-- ======================= -->
@@ -177,7 +189,7 @@
       <!-- Collapsible #1: Processed Dataset -->
       <div class="collapsible-section no-content" id="processed-dataset-wrapper">
         <div class="collapsible-header" onclick="toggleSection('processed-dataset')">
-          <h3>Processed Dataset</h3>
+          <h3>🎚️Processed Dataset</h3>
           <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Based on the configured partition, here is the transformed dataset consisting of membership values.</i></p>
           <span class="toggle-icon" id="toggle-icon-processed-dataset">&#9660;</span>
         </div>
@@ -191,7 +203,7 @@
       <!-- Collapsible #2: Fuzzy Membership Function Plots -->
       <div class="collapsible-section no-content" id="membership-plots-wrapper">
         <div class="collapsible-header" onclick="toggleSection('membership-plots')">
-          <h3>Fuzzy Membership Function Plots</h3>
+          <h3>🎚️Fuzzy Membership Function Plots</h3>
           <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Line-plot of all symmetric triangular FMFs</i></p>
           <span class="toggle-icon" id="toggle-icon-membership-plots">&#9660;</span>
         </div>
@@ -207,7 +219,7 @@
       <!-- Collapsible #3: Step-by-Step FARM -->
       <div class="collapsible-section no-content" id="farm-calculations-wrapper">
         <div class="collapsible-header" onclick="toggleSection('farm-calculations')">
-          <h3>Step-by-Step FARM Calculations</h3>
+          <h3>🎚️Step-by-Step FARM Calculations</h3>
           <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Explore rule generation through itemset creation and pruning. </i></p>
           <span class="toggle-icon" id="toggle-icon-farm-calculations">&#9660;</span>
         </div>
@@ -221,7 +233,7 @@
       <!-- Collapsible #4: FARM Rules -->
       <div class="collapsible-section no-content" id="farm-rules-wrapper">
         <div class="collapsible-header" onclick="toggleSection('farm-rules')">
-          <h3>FARM Rules</h3>
+          <h3>🎚️FARM Rules</h3>
           <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>All the possible FARM rules in the possible configuration</i></p>
           <span class="toggle-icon" id="toggle-icon-farm-rules">&#9660;</span>
         </div>
@@ -234,7 +246,7 @@
 
       <div class="collapsible-section no-content" id="explored-farm-rules-wrapper">
         <div class="collapsible-header" onclick="toggleSection('explored-farm-rules')">
-            <h3>Explored FARM Rules</h3>
+            <h3>🎚️Explored FARM Rules</h3>
             <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Analyze the number of FARM rules generated using a brute-force approach across all parameter combinations</i></p>
             <span class="toggle-icon" id="toggle-icon-explored-farm-rules">&#9660;</span>
         </div>
@@ -246,21 +258,12 @@
                 <p>No detailed rules yet.</p>
             </div>
             <div class="explored-heatmap">
+              <button id="refreshHeatmapBtn" class="p-btn">Refresh Heatmap</button>
                 <img id="farmPlotImage" alt="FARM Rules Heatmap" style="display: none;" />
             </div>
         </div>
-    </div>  <div id="modifyPromptModal" class="overlay">
-      <div class="overlay-content">
-        <span class="close-btn" id="closeModifyPromptBtn">&times;</span>
-        <h2>Modify Summary Prompt</h2>
-        <textarea id="promptTextarea" rows="10" style="width: 100%; padding: 10px; font-size: 16px;"></textarea>
-        <div style="margin-top: 20px; text-align: right;">
-          <button id="savePromptBtn" class="p-btn" style="margin-right: 10px;">Save</button>
-          <button id="resetPromptBtn" class="p-btn" style="margin-right: 10px;">Reset to Default</button>
-          <button id="cancelPromptBtn" class="p-btn">Cancel</button>
-        </div>
-      </div>
-    </div>
+    </div>  
+
     
     </section>
 

@@ -192,60 +192,21 @@ function handleGenerateSummary() {
       });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // ... existing code ...
 
-  // Handle "Modify Prompt" button click
-  modifyPromptBtn.addEventListener('click', () => {
-      fetchCurrentPrompt();
-      modifyPromptModal.style.display = "flex";
-  });
+// Function to refresh the heatmap
+function refreshHeatmap() {
+  const farmPlotImage = document.getElementById('farmPlotImage');
+  if (farmPlotImage && farmPlotImage.src) {
+    const currentSrc = farmPlotImage.src.split('?')[0]; // Strip existing query parameters
+    const newSrc = `${currentSrc}`; // Add cache-busting timestamp
+    farmPlotImage.src = newSrc;
+    farmPlotImage.style.display = 'block'; // Ensure it is visible
+    console.log('Heatmap refreshed:', newSrc);
+  } else {
+    console.warn('No heatmap found to refresh.');
+  }
+}
 
-
-
-  // Function to save the modified prompt
-  savePromptBtn.addEventListener('click', () => {
-      const modifiedPrompt = promptTextarea.value.trim();
-      if (!modifiedPrompt) {
-          alert("Prompt cannot be empty.");
-          return;
-      }
-
-      // Optional: Validate that the prompt contains the {rules} placeholder
-      if (!modifiedPrompt.includes("{rules}")) {
-          alert("Prompt must include the {rules} placeholder.");
-          return;
-      }
-
-      showLoading();
-
-      // Send the modified prompt to the backend
-      const formData = new FormData();
-      formData.append('modified_prompt', modifiedPrompt);
-
-      fetch('/set_modified_prompt', {
-          method: 'POST',
-          body: formData
-      })
-          .then(response => response.json())
-          .then(data => {
-              hideLoading();
-              if (data.success) {
-                  alert("Prompt modified successfully.");
-                  closeModifyPrompt();
-              } else {
-                  alert(`Error: ${data.error}`);
-              }
-          })
-          .catch(err => {
-              hideLoading();
-              console.error("Error saving modified prompt:", err);
-              alert("An error occurred while saving the modified prompt.");
-          });
-  });
-
-  // ... existing code ...
-});
 
   let isGeneratingSummary = false;
 
@@ -491,42 +452,67 @@ savePromptBtn.addEventListener('click', () => {
     });
 
     // FARM Exploration Form Submission
-    farmExplorationForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      showLoading();
+farmExplorationForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  showLoading();
 
-      const formData = new FormData(farmExplorationForm);
-      fetch('/explore_farm_rules', {
-          method: 'POST',
-          body: formData
-      })
-      .then(resp => {
-          if (!resp.ok) {
-              throw new Error(`HTTP error! Status: ${resp.status}`);
-          }
-          return resp.json();
-      })
-      .then(data => {
-          hideLoading();
-          if (data.success) {
-              // Display Summary
-              const farmSummary = document.getElementById('farmSummary');
-              const farmDetails = document.getElementById('farmDetails');
-              const farmPlotImage = document.getElementById('farmPlotImage');
+  const farmPlotImage = document.getElementById('farmPlotImage');
+  const farmSummary = document.getElementById('farmSummary');
+  const farmDetails = document.getElementById('farmDetails');
 
-              farmSummary.innerHTML = `<p>${data.summary}</p>`;
-              farmDetails.innerHTML = data.details;
-              farmPlotImage.src = `/static/plots/${data.plot_filename}`;
-              farmPlotImage.style.display = 'block';
+  // Clear the existing heatmap and related content
+  if (farmPlotImage) {
+    farmPlotImage.style.display = 'none';
+    farmPlotImage.src = ''; // Reset the source
+    console.log('Previous heatmap cleared.');
+  }
+  if (farmSummary) {
+    farmSummary.innerHTML = "<p>No explored summary available yet.</p>";
+  }
+  if (farmDetails) {
+    farmDetails.innerHTML = "<p>No detailed rules yet.</p>";
+  }
 
-              // Show Results Section
-              document.getElementById('farmResults').style.display = 'block';
-          } else {
-              console.error("Backend returned error:", data.error);
-              alert(`Error exploring FARM rules: ${data.error}`);
-          }
-      })
+  const formData = new FormData(farmExplorationForm);
+
+  // Fetch data from the server
+  fetch('/explore_farm_rules', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error(`HTTP error! Status: ${resp.status}`);
+      }
+      return resp.json();
+    })
+    .then((data) => {
+      hideLoading();
+      if (data.success) {
+        // Populate new heatmap and details
+        if (data.plot_filename) {
+          farmPlotImage.src = `/static/plots/${data.plot_filename}`;
+          farmPlotImage.style.display = 'block';
+          console.log('New heatmap displayed.');
+        }
+
+        if (data.summary) {
+          farmSummary.innerHTML = `<p>${data.summary}</p>`;
+        }
+
+        if (data.details) {
+          farmDetails.innerHTML = data.details;
+        }
+      } else {
+        alert(`Error exploring FARM rules: ${data.error}`);
+      }
+    })
+    .catch((err) => {
+      hideLoading();
+      console.error('Error during FARM rule exploration:', err);
+      alert('An error occurred while exploring FARM rules. Check console for details.');
     });
+});
 
     // Threshold Form Submission
     thresholdForm.addEventListener('submit', function(e) {
