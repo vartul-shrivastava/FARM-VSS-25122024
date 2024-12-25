@@ -804,3 +804,4 @@ savePromptBtn.addEventListener('click', () => {
   openCollapsibleSection('membership-plots');
   openCollapsibleSection('farm-calculations');
   openCollapsibleSection('farm-rules');
+  openCollapsibleSection('explored-farm-rules');

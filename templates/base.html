@@ -48,6 +48,7 @@
       <div class="model-selection">
         <img src="{{ url_for('static', filename='ollama_logo.svg') }}" alt="Ollama Logo" class="ollama-logo" />
         <h5 class="model-selection-title">Local AI Models (Ollama)</h5>
+        <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>To avoid unexpected behavior, please always generate FARM rules first, then select an AI model for summarization </i></p>
 
         <select id="modelSelect">
           <option value="" disabled selected>Loading models...</option>
@@ -66,6 +67,7 @@
   <!-- ======================= -->
   <div class="left-menu">
     <h3>FARM Thresholds</h3>
+    <p style="font-size: smaller;"><i>Set the minimum value of Significance/Support and Certainty/Confidence for entire session</i></p>
     <form id="thresholdForm">
       <label for="min_support">Minimum Significance/Support:</label>
       <input
@@ -94,7 +96,8 @@
       <button class="btn" style="margin-top: 10px;" type="submit">Set Thresholds</button>
     </form>
 
-    <h3 style="margin-top: 50px;">FARM Rule Exploration</h3>
+    <h3 style="margin-top: 10px;">FARM Rule Exploration</h3>
+    <p style="font-size: smaller;"><i>A brute-force explorer of all possible FARM rules based on the combinations of Significance and Certainty</i></p>
     <form id="farmExplorationForm">
       <label for="step_support">Signif/Supp Step:</label>
       <input
@@ -154,7 +157,8 @@
     
     <!-- ========== PARTITION FORM SECTION ========== -->
     <section class="container partition-section" style="margin-top: 40px;">
-      <h2>Select Columns, Configure Ranges, and Assign Weights</h2>
+      <h2>Fuzzy Partitioning of Numeric Columns</h2>
+      <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Perform fuzzy partitioning of the numeric columns in your dataset using symmetric triangular fuzzy membership functions. Customize the number of partitions based on your analysis needs, and assign weights to each partition if applying Weighted Fuzzy Association Rule Mining (WFARM). For standard Fuzzy Association Rule Mining (FARM), all weights are set to 1.0 by default, ensuring equal significance across partitions.</i></p>
       <form id="partitionForm" style="display: none;">
         <input type="hidden" name="filepath" id="hiddenFilepath" />
         <div id="partitionUI">
@@ -169,11 +173,12 @@
     <!-- ========== RESULTS SECTION ========== -->
     <section class="container results-section" style="margin-top: 20px;">
       <h2>Calculated FARM Rules and Analytics </h2>
-
+      
       <!-- Collapsible #1: Processed Dataset -->
       <div class="collapsible-section no-content" id="processed-dataset-wrapper">
         <div class="collapsible-header" onclick="toggleSection('processed-dataset')">
           <h3>Processed Dataset</h3>
+          <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Based on the configured partition, here is the transformed dataset consisting of membership values.</i></p>
           <span class="toggle-icon" id="toggle-icon-processed-dataset">&#9660;</span>
         </div>
         <div class="collapsible-content" id="section-processed-dataset">
@@ -187,6 +192,7 @@
       <div class="collapsible-section no-content" id="membership-plots-wrapper">
         <div class="collapsible-header" onclick="toggleSection('membership-plots')">
           <h3>Fuzzy Membership Function Plots</h3>
+          <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Line-plot of all symmetric triangular FMFs</i></p>
           <span class="toggle-icon" id="toggle-icon-membership-plots">&#9660;</span>
         </div>
         <div class="collapsible-content" id="section-membership-plots">
@@ -202,6 +208,7 @@
       <div class="collapsible-section no-content" id="farm-calculations-wrapper">
         <div class="collapsible-header" onclick="toggleSection('farm-calculations')">
           <h3>Step-by-Step FARM Calculations</h3>
+          <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Explore rule generation through itemset creation and pruning. </i></p>
           <span class="toggle-icon" id="toggle-icon-farm-calculations">&#9660;</span>
         </div>
         <div class="collapsible-content" id="section-farm-calculations">
@@ -215,6 +222,7 @@
       <div class="collapsible-section no-content" id="farm-rules-wrapper">
         <div class="collapsible-header" onclick="toggleSection('farm-rules')">
           <h3>FARM Rules</h3>
+          <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>All the possible FARM rules in the possible configuration</i></p>
           <span class="toggle-icon" id="toggle-icon-farm-rules">&#9660;</span>
         </div>
         <div class="collapsible-content" id="section-farm-rules">
@@ -227,6 +235,7 @@
       <div class="collapsible-section no-content" id="explored-farm-rules-wrapper">
         <div class="collapsible-header" onclick="toggleSection('explored-farm-rules')">
             <h3>Explored FARM Rules</h3>
+            <p style="color: rgb(255, 255, 255);font-size: smaller;"><i>Analyze the number of FARM rules generated using a brute-force approach across all parameter combinations</i></p>
             <span class="toggle-icon" id="toggle-icon-explored-farm-rules">&#9660;</span>
         </div>
         <div class="collapsible-content" id="section-explored-farm-rules">
