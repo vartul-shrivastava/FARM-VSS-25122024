@@ -192,6 +192,13 @@ function handleGenerateSummary() {
       });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const refreshHeatmapBtn = document.getElementById('refreshHeatmapBtn');
+  if (refreshHeatmapBtn) {
+    refreshHeatmapBtn.addEventListener('click', refreshHeatmap);
+  }
+});
+
 
 // Function to refresh the heatmap
 function refreshHeatmap() {
@@ -211,6 +218,7 @@ function refreshHeatmap() {
   let isGeneratingSummary = false;
 
   document.addEventListener("DOMContentLoaded", () => {
+    
     // Elements
     const uploadForm = document.getElementById('uploadForm');
     const partitionForm = document.getElementById('partitionForm');
