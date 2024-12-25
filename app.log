@@ -9784,3 +9784,91 @@
 [2024-12-26 01:41:02,801] DEBUG in app: Phase 3: Kept 0 combos, Pruned 35 combos.
 [2024-12-26 01:41:03,070] DEBUG in app: Generated 0 FARM rules.
 [2024-12-26 01:41:03,162] DEBUG in app: Phase 1: Kept 13 combos, Pruned 8 combos.
+[2024-12-26 01:41:03,483] DEBUG in app: Phase 2: Kept 17 combos, Pruned 55 combos.
+[2024-12-26 01:41:03,656] DEBUG in app: Phase 3: Kept 0 combos, Pruned 35 combos.
+[2024-12-26 01:41:03,997] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:04,097] DEBUG in app: Phase 1: Kept 7 combos, Pruned 14 combos.
+[2024-12-26 01:41:04,199] DEBUG in app: Phase 2: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:04,199] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:04,299] DEBUG in app: Phase 1: Kept 7 combos, Pruned 14 combos.
+[2024-12-26 01:41:04,401] DEBUG in app: Phase 2: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:04,401] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:04,495] DEBUG in app: Phase 1: Kept 7 combos, Pruned 14 combos.
+[2024-12-26 01:41:04,597] DEBUG in app: Phase 2: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:04,597] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:04,669] DEBUG in app: Phase 1: Kept 7 combos, Pruned 14 combos.
+[2024-12-26 01:41:04,769] DEBUG in app: Phase 2: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:04,769] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:04,854] DEBUG in app: Phase 1: Kept 7 combos, Pruned 14 combos.
+[2024-12-26 01:41:04,944] DEBUG in app: Phase 2: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:04,944] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,026] DEBUG in app: Phase 1: Kept 4 combos, Pruned 17 combos.
+[2024-12-26 01:41:05,057] DEBUG in app: Phase 2: Kept 0 combos, Pruned 6 combos.
+[2024-12-26 01:41:05,057] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,144] DEBUG in app: Phase 1: Kept 4 combos, Pruned 17 combos.
+[2024-12-26 01:41:05,172] DEBUG in app: Phase 2: Kept 0 combos, Pruned 6 combos.
+[2024-12-26 01:41:05,172] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,270] DEBUG in app: Phase 1: Kept 4 combos, Pruned 17 combos.
+[2024-12-26 01:41:05,294] DEBUG in app: Phase 2: Kept 0 combos, Pruned 6 combos.
+[2024-12-26 01:41:05,298] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,378] DEBUG in app: Phase 1: Kept 4 combos, Pruned 17 combos.
+[2024-12-26 01:41:05,403] DEBUG in app: Phase 2: Kept 0 combos, Pruned 6 combos.
+[2024-12-26 01:41:05,403] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,485] DEBUG in app: Phase 1: Kept 4 combos, Pruned 17 combos.
+[2024-12-26 01:41:05,514] DEBUG in app: Phase 2: Kept 0 combos, Pruned 6 combos.
+[2024-12-26 01:41:05,514] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,597] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:05,597] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,688] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:05,688] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,770] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:05,771] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,856] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:05,856] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:05,937] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:05,937] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,021] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,021] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,105] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,105] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,196] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,196] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,279] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,279] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,363] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,364] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,446] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,446] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,525] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,525] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,620] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,620] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,705] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,705] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,801] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,808] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,885] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,887] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:06,968] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:06,968] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,046] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,046] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,128] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,128] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,205] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,211] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,291] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,295] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,392] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,392] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,500] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,500] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,580] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,580] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,657] DEBUG in app: Phase 1: Kept 0 combos, Pruned 21 combos.
+[2024-12-26 01:41:07,657] DEBUG in app: Generated 0 FARM rules.
+[2024-12-26 01:41:07,677] DEBUG in colorbar: locator: <matplotlib.ticker.AutoLocator object at 0x0000020D59605750>
+[2024-12-26 01:41:08,067] DEBUG in app: Heatmap saved as farm_rule_heatmap.png
+[2024-12-26 01:41:08,067] DEBUG in app: Response data: {'success': True, 'summary': 'Explored 45 combinations.', 'details': '<h3>Detailed FARM Rules</h3>', 'plot_filename': 'farm_rule_heatmap.png'}
+[2024-12-26 01:41:08,071] INFO in _internal: 127.0.0.1 - - [26/Dec/2024 01:41:08] "POST /explore_farm_rules HTTP/1.1" 200 -
+[2024-12-26 01:41:08,115] INFO in _internal: 127.0.0.1 - - [26/Dec/2024 01:41:08] "GET /static/plots/farm_rule_heatmap.png HTTP/1.1" 200 -
