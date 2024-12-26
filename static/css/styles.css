@@ -87,6 +87,85 @@ main {
   overflow: hidden; /* Ensures content stays within rounded corners */
 }
 
+/* ----------------------------
+   Introductory Overlay Styles
+---------------------------- */
+
+/* Introductory Container using Flexbox */
+.intro-container {
+  background-image: url('/static/farmvss.png');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the image fixed during scrolling */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Logo Styling */
+.intro-logo {
+  margin: 90px 20px;
+  width: 300px; /* Fixed width for the logo */
+}
+
+.intro-logo .site-logo {
+  width: 100%; /* Ensure the logo fits within its container */
+  height: auto;
+}
+
+/* Information Styling */
+.intro-info {
+  flex: 1; /* Takes up the remaining space */
+}
+
+.intro-info h2 {
+  color: #514cbb;
+  margin-bottom: 10px;
+}
+
+.intro-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f9f7ff;
+  margin-bottom: 15px;
+}
+
+/* Bullet Points Styling */
+.intro-points {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.intro-points li {
+  color: #f9f7ff;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .intro-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .intro-logo {
+    flex: 0 0 auto;
+    margin-bottom: 15px;
+  }
+  
+  .intro-points {
+    padding-left: 15px;
+    text-align: left;
+  }
+}
+
+
 .container:hover {
   backdrop-filter: blur(15px); /* Increases blur effect for hover state */
   background: linear-gradient(135deg, #110b6c, rgba(7, 3, 83, 0.6));
@@ -199,20 +278,6 @@ table tr:nth-child(even) {
   align-items: center;
 }
 
-.overlay-content {
-  background-color: #fff;
-  padding: 20px 30px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 800px;
-  max-height: 80%;
-  overflow-y: auto;
-  position: relative;
-}
-
-.overlay-content h2 {
-  color: #514cbb;
-}
 
 .close-btn {
   position: absolute;
@@ -661,20 +726,29 @@ input {
 #summaryContent h3 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #fff8f8;
+  margin-top: 15px;
+}
+
+
+/* Styling for headings and paragraphs */
+#summaryContent h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff8f8;
   margin-top: 15px;
 }
 
 #summaryContent p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #555;
+  color: #fffbfb;
 }
 
 /* Emphasize bold text */
 #summaryContent strong {
   font-weight: bold;
-  color: #000;
+  color: #f7eaea;
 }
 
 
@@ -785,7 +859,16 @@ input {
   max-width: 600px;
 }
 
+#farmPlotImage{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 #promptTextarea {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  color: white;
+  background-color: #0f0e5f;
   resize: vertical;
 }
 
@@ -809,7 +892,11 @@ input {
 }
 
 .overlay-content {
-  background-color: #fff;
+  background-image: url('/static/farmvss.png');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the image fixed during scrolling */
   padding: 20px 30px;
   border-radius: 8px;
   width: 80%;

@@ -5,7 +5,7 @@ import uuid
 import json
 import logging
 from datetime import timedelta
-
+import subprocess
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -1014,6 +1014,62 @@ def uploaded_file(filename):
     Serve uploaded files. Use with caution and ensure proper security measures.
     """
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+import subprocess  # Ensure subprocess is imported at the top
+
+def is_ollama_running():
+    """
+    Checks if Ollama is running by attempting to execute 'ollama list'.
+    Returns True if Ollama responds, False otherwise.
+    """
+    try:
+        result = subprocess.run(
+            ['ollama', 'list'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,  # Return output as string
+            timeout=5  # Timeout after 5 seconds
+        )
+        return result.returncode == 0
+    except (subprocess.SubprocessError, FileNotFoundError) as e:
+        logger.error(f"Ollama check failed: {e}")
+        return False
+
+
+
+# Route to check AI readiness and available models
+@app.route('/check_ai_readiness', methods=['GET'])
+def check_ai_readiness():
+    if not is_ollama_running():
+        return jsonify({
+            "ollama_ready": False,
+            "models": [],
+            "error": "Ollama is not running or not found in PATH."
+        })
+
+    try:
+        # Fetch available models from Ollama
+        model_data = str(ollama.list())  # Assume this returns the list of Model objects
+
+        # Regular expression to match the model name
+        pattern = r"model='(.*?)'"  # Captures content between model=' and '
+
+        # Use re.findall to extract all matches
+        models = re.findall(pattern, model_data)
+        models = [name.strip() for name in models if name.strip()]  # Strip whitespace and filter out empty strings
+
+        logger.debug(f"Installed Ollama AI Models: {models}")
+        return jsonify({
+            "ollama_ready": True,
+            "models": models
+        })
+    except Exception as e:
+        logger.error(f"Error fetching Ollama models: {e}")
+        return jsonify({
+            "ollama_ready": True,
+            "models": [],
+            "error": f"Error fetching Ollama models: {e}"
+        })
 
 # ------------------------------------------------------
 # Entry Point

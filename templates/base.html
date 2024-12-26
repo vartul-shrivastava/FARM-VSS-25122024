@@ -14,6 +14,49 @@
 </head>
 
 <body>
+  <!-- AI Dependency Modal -->
+<div id="aiDependencyModal" class="overlay">
+  <div class="overlay-content">
+    <span class="close-btn" id="closeAIModalBtn">&times;</span>
+    <h2>Installed Ollama AI Models</h2>
+    <pre id="aiDependencyModalContent" style="white-space: pre-wrap; word-wrap: break-word;"></pre>
+  </div>
+</div>
+
+  <!-- Introductory Overlay -->
+<div id="introOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introDescription">
+  <div class="overlay-content">
+    <span class="close-btn" id="closeIntroBtn" aria-label="Close">&times;</span>
+    
+    <div class="intro-container">
+      <!-- Logo on the Left -->
+      <div class="intro-logo">
+        <img src="{{ url_for('static', filename='sig-logo.svg') }}" alt="FARM-VSS Logo" class="site-logo" />
+      </div>
+      
+      <!-- Information on the Right -->
+      <div class="intro-info">
+        <p id="introDescription">
+          <b>FARM-VSS (Fuzzy Association Rule Mining - Visualization and Summarization Suite</b>) is a toolkit designed to help you analyze and generate insightful association rules from your numerical datasets. By leveraging fuzzy logic and AI models, FARM-VSS aids in personalized and meaningful rule generation, facilitating data-driven decisions.
+        </p>
+        
+        <!-- Bullet Points Below Information -->
+        <ul class="intro-points">
+          <li><i>Easily upload and process your datasets in CSV or Excel formats.</i></li>
+          <li><i>Customize fuzzy partitions and thresholds to refine your analysis.</i></li>
+          <li><i>Generate and explore FARM rules with visual support.</i></li>
+          <li><i>Leverage AI models for summarizing and enhancing rule insights.</i></li>
+          <li><i>Modify prompts to tailor summaries according to your needs.</i></li>
+        </ul>
+        
+        <button id="startUsingBtn" class="p-btn">Get Started</button>
+        <button id="checkAIDependencyBtn" class="p-btn">Check AI Dependency</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
     <div id="summaryOverlay" class="overlay">
     <div class="overlay-content">
       <span class="close-btn" id="closeSummaryBtn">&times;</span>
@@ -152,7 +195,8 @@
   <div id="modifyPromptModal" class="overlay">
     <div class="overlay-content">
       <span class="close-btn" id="closeModifyPromptBtn">&times;</span>
-      <h2>Modify Summary Prompt</h2>
+      <h2 style="color: wheat;margin-bottom: 10px;">Modify Summary Prompt</h2>
+      <p style="color: white;">Always ensure <code>{rules}</code> is in your prompt. It includes top 10 FARM rules by certainty values and number of antecedents.</p>
       <textarea id="promptTextarea" rows="10" style="width: 100%; padding: 10px; font-size: 16px;"></textarea>
       <div style="margin-top: 20px; text-align: right;">
         <button id="savePromptBtn" class="p-btn" style="margin-right: 10px;">Save</button>
@@ -258,6 +302,7 @@
                 <p>No detailed rules yet.</p>
             </div>
             <div class="explored-heatmap">
+              <p style="color: black;"><i>(When you change the configuration of thresholds and step settings. Kindly click refresh after loading screen to see new heatmap)</i></p>
               <button id="refreshHeatmapBtn" class="btn">Refresh Heatmap</button>
                 <img id="farmPlotImage" alt="FARM Rules Heatmap" style="display: none;" />
             </div>

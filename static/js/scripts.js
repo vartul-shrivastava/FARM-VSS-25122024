@@ -194,6 +194,77 @@ function handleGenerateSummary() {
 
   let isGeneratingSummary = false;
 
+// scripts.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Existing code...
+
+  /* ----------------------------
+     Check AI Dependency Functionality
+  ---------------------------- */
+
+  const checkAIDependencyBtn = document.getElementById('checkAIDependencyBtn');
+
+  // Function to display AI models
+  function displayAIModules(models, ollamaReady, error) {
+    if (!ollamaReady) {
+      alert(`Error: ${error}`);
+      return;
+    }
+
+    if (!models || models.length === 0) {
+      alert("No Ollama AI models are currently installed.");
+      return;
+    }
+
+    // Create a formatted string of models
+    const modelList = models.join("\n");
+
+    // Display the models in an alert or a better UI component
+    alert(`Installed Ollama AI Models:\n\n${modelList}`);
+
+    // Alternatively, display in a modal or a specific div
+    /*
+    const modalContent = document.getElementById('aiDependencyModalContent');
+    modalContent.textContent = modelList;
+    document.getElementById('aiDependencyModal').style.display = 'flex';
+    */
+  }
+
+  // Event listener for the "Check AI Dependency" button
+  checkAIDependencyBtn.addEventListener('click', () => {
+    showLoading(); // Show loading overlay
+
+    fetch('/check_ai_readiness', {  // Updated URL
+      method: 'GET',  // Changed to GET as per route definition
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // No body needed for GET request
+    })
+      .then(response => response.json())
+      .then(data => {
+        hideLoading(); // Hide loading overlay
+        if (data.success !== undefined) {  // Adjust based on response structure
+          if (!data.ollama_ready) {
+            alert(`Error: ${data.error}`);
+            return;
+          }
+          displayAIModules(data.models, data.ollama_ready, data.error);
+        } else {
+          // If 'success' key is not used in /check_ai_readiness, adjust accordingly
+          displayAIModules(data.models, data.ollama_ready, data.error);
+        }
+      })
+      .catch(error => {
+        hideLoading(); // Hide loading overlay
+        console.error('Error fetching AI dependencies:', error);
+        alert('An error occurred while checking AI dependencies.');
+      });
+  });
+
+  // Existing code continues...
+});
 
   // Function to refresh the heatmap
 function refreshHeatmap() {
@@ -215,7 +286,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {  const introOverlay = document.getElementById('introOverlay');
+    const closeIntroBtn = document.getElementById('closeIntroBtn');
+    const startUsingBtn = document.getElementById('startUsingBtn');
+  
+    // Function to show the introductory overlay
+    function showIntroOverlay() {
+      introOverlay.style.display = 'flex';
+      // Set focus to the close button for accessibility
+      closeIntroBtn.focus();
+    }
+  
+    // Function to hide the introductory overlay
+    function hideIntroOverlay() {
+      introOverlay.style.display = 'none';
+    }
+  
+    // Event listener for the close button
+    closeIntroBtn.addEventListener('click', hideIntroOverlay);
+  
+    // Event listener for the "Get Started" button
+    startUsingBtn.addEventListener('click', hideIntroOverlay);
+  
+    // Always show the introductory overlay on every page load
+    showIntroOverlay();
     // Elements
     const uploadForm = document.getElementById('uploadForm');
     const partitionForm = document.getElementById('partitionForm');
@@ -297,7 +391,7 @@ function fetchCurrentPrompt() {
           if (data.success && data.prompt) {
               promptTextarea.value = data.prompt;
           } else {
-              promptTextarea.value = 'No prompt available.';
+              promptTextarea.value = 'No prompt available. Kindly populate the FARM rules and set the model to access this feature';
           }
       })
       .catch(err => {
