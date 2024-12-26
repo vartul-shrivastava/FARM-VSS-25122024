@@ -221,12 +221,13 @@ table td {
 
 table th {
   backdrop-filter: blur(10px); /* Adds a blur effect to the header */
-  background: #110b6c;
-  color: #fff;
+  background: #f5f4ff;
+  color: #060e36;
 }
 
 table tr:nth-child(even) {
-  background: #f9f9f9;
+  background: #f5f4ff;
+  color: #060e36;
 }
 
 .alert {
@@ -297,6 +298,7 @@ table tr:nth-child(even) {
    CONFIG CARDS GRID
 ---------------------------- */
 .config-cards-grid {
+  background: whitesmoke;
   max-height: 70%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -366,17 +368,7 @@ table tr:nth-child(even) {
   overflow: scroll;
 }
 
-.collapsible-header {
-  backdrop-filter: blur(10px); /* Adds a blur effect to the header */
-  background: linear-gradient(135deg, #110b6c, #07035361);
-  color: #fff;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-}
+
 
 input {
   background: wheat;
@@ -447,7 +439,7 @@ input {
 
 .combinations-table thead,
 .farm-rules-table thead {
-  background-color: #6c63ff;
+  background-color: #0c0944;
   color: #fff;
 }
 
@@ -723,11 +715,15 @@ input {
   font-size: 0.9em;
 }
 
+.partitionUI {
+  background: whitesmoke;
+}
+
 /* Styling for headings and paragraphs */
 #summaryContent h3 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff8f8;
+  color: #070541;
   margin-top: 15px;
 }
 
@@ -736,20 +732,20 @@ input {
 #summaryContent h4 {
   font-size: 2rem;
   font-weight: bold;
-  color: #fff8f8;
+  color: #070541;
   margin-top: 15px;
 }
 
 #summaryContent p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #fffbfb;
+  color: #070541;
 }
 
 /* Emphasize bold text */
 #summaryContent strong {
   font-weight: bold;
-  color: #f7eaea;
+  color: #070541;
 }
 
 
@@ -908,6 +904,22 @@ input {
   position: relative;
 }
 
+.overlay-content-prompt {
+  backdrop-filter: blur(10px); /* Adds a blur effect to the overlay */
+  background-image: url('/static/logo-bg.png');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the image fixed during scrolling */
+  padding: 20px 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
 .close-btn {
   color: #ffffff;
   position: absolute;
@@ -934,7 +946,8 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
+  color: #514cbb;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
