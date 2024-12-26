@@ -266,6 +266,7 @@ table tr:nth-child(even) {
 }
 /* Overlay Styles */
 .overlay {
+  backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
@@ -892,6 +893,7 @@ input {
 }
 
 .overlay-content {
+  backdrop-filter: blur(10px); /* Adds a blur effect to the overlay */
   background-image: url('/static/farmvss.png');
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center; /* Centers the image */

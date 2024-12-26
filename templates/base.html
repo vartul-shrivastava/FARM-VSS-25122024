@@ -60,7 +60,7 @@
     <div id="summaryOverlay" class="overlay">
     <div class="overlay-content">
       <span class="close-btn" id="closeSummaryBtn">&times;</span>
-      <h4>FARM Rules Summary (Troubleshoot by choosing different AI models and modifying prompt for more personalized results)</h4>
+      <h4 style="color: wheat;">FARM Rules Summary (Troubleshoot by choosing different AI models and modifying prompt for more personalized results)</h4>
       <div id="summaryContent">
         <p>Loading summary...</p>
       </div>
@@ -302,8 +302,8 @@
                 <p>No detailed rules yet.</p>
             </div>
             <div class="explored-heatmap">
-              <p style="color: black;"><i>(When you change the configuration of thresholds and step settings. Kindly click refresh after loading screen to see new heatmap)</i></p>
-              <button id="refreshHeatmapBtn" class="btn">Refresh Heatmap</button>
+              <p style="color: black;"><i>Always run the FARM analysis first to register the columns and partitions you want to explore; otherwise, the tool will display a blank heatmap. After changing the configuration of thresholds and step settings, please click the Refresh button on the loading screen to view the updated heatmap.</i></p>
+              <button id="refreshHeatmapBtn" class="p-btn">Refresh Heatmap</button>
                 <img id="farmPlotImage" alt="FARM Rules Heatmap" style="display: none;" />
             </div>
         </div>
