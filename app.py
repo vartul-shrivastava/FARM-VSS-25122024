@@ -1,18 +1,17 @@
 import os
 import re
 import itertools
-import uuid
-import json
+import subprocess 
+import seaborn as sns
 import logging
-from datetime import timedelta
+import uuid
+import logging
 import subprocess
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
-
-import ollama  # The Ollama Python library for AI models
-
+import ollama 
 from flask import (
     Flask, render_template, request, redirect, url_for, flash,
     jsonify, session, send_from_directory
@@ -30,7 +29,6 @@ plt.switch_backend('Agg')
 # ------------------------------------------------------
 app = Flask(__name__)
 # Ensure necessary directories exist
-
 
 # Load configuration from environment variables or set defaults
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_default_secret_key')  # Replace with a secure key
@@ -92,11 +90,7 @@ def get_columns(filepath):
     except Exception as e:
         logger.error(f"Error in get_columns: {e}")
 
-import os
-import re
-import matplotlib.pyplot as plt
-import seaborn as sns
-import logging
+
 
 def generate_distribution_charts(df, folder='static/plots'):
     """
@@ -1015,7 +1009,7 @@ def uploaded_file(filename):
     """
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-import subprocess  # Ensure subprocess is imported at the top
+
 
 def is_ollama_running():
     """
